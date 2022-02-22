@@ -41,6 +41,7 @@ export const createMetadata = async (
 ): Promise<DataV2> => {
   // Metadata
   let metadata;
+  console.log('metadata link', metadataLink);
   try {
     metadata = await (await fetch(metadataLink, { method: 'GET' })).json();
   } catch (e) {

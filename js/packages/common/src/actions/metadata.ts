@@ -506,7 +506,7 @@ export async function updateMetadata(
   metadataAccount?: StringPublicKey,
 ) {
   const metadataProgramId = programIds().metadata;
-
+  console.log('metadata pId', metadataProgramId);
   metadataAccount =
     metadataAccount ||
     (
@@ -572,10 +572,11 @@ export async function createMetadata(
       toPublicKey(metadataProgramId),
     )
   )[0];
+  console.log('metadata account ----------->', metadataAccount);
   console.log('Data', data);
   const value = new CreateMetadataArgs({ data, isMutable: true });
   const txnData = Buffer.from(serialize(METADATA_SCHEMA, value));
-
+  console.log('value -->', value);
   const keys = [
     {
       pubkey: toPublicKey(metadataAccount),

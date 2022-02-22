@@ -812,6 +812,8 @@ async function awaitTransactionSignatureConfirmation(
         },
         commitment,
       );
+      console.log('subId -------->',subId);
+      
     } catch (e) {
       done = true;
       console.error('WS error in setup', txid, e);
@@ -824,6 +826,11 @@ async function awaitTransactionSignatureConfirmation(
             txid,
           ]);
           status = signatureStatuses && signatureStatuses.value[0];
+          console.log('signature status ------>',signatureStatuses);
+          console.log('signature status value[0] ------>',signatureStatuses.value[0]);
+          console.log('status ---------->', status);
+          
+
           if (!done) {
             if (!status) {
               console.log('REST null result for', txid, status);
@@ -839,6 +846,7 @@ async function awaitTransactionSignatureConfirmation(
               resolve(status);
             }
           }
+
         } catch (e) {
           if (!done) {
             console.log('REST connection error: txid', txid, e);
@@ -848,7 +856,8 @@ async function awaitTransactionSignatureConfirmation(
       await sleep(2000);
     }
   });
-
+  console.log('status at the end of function', status);
+  
   //@ts-ignore
   if (connection._signatureSubscriptions[subId])
     connection.removeSignatureListener(subId);

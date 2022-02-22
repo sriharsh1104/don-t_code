@@ -154,7 +154,7 @@ export const mintNFT = async (
     toPublicKey(payerPublicKey),
     signers,
   ).toBase58();
-
+    console.log('mintKey ------>', mintKey);
   const recipientKey = (
     await findProgramAddress(
       [
