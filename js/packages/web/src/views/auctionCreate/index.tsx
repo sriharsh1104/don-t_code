@@ -143,16 +143,16 @@ export interface AuctionState {
   quoteMintInfo: MintInfo;
   quoteMintInfoExtended: TokenInfo;
 }
-
 export const AuctionCreateView = () => {
+  console.log('This is auction create view');
   const connection = useConnection();
   const wallet = useWallet();
   const { whitelistedCreatorsByCreator, storeIndexer } = useMeta();
   const { step_param }: { step_param: string } = useParams();
   const history = useHistory();
+  console.log('History auction view', history);
   const mint = useMint(QUOTE_MINT);
   const { width } = useWindowDimensions();
-
   const [step, setStep] = useState<number>(0);
   const [stepsVisible, setStepsVisible] = useState<boolean>(true);
   const [auctionObj, setAuctionObj] =
@@ -522,7 +522,8 @@ export const AuctionCreateView = () => {
     );
     setAuctionObj(_auctionObj);
   };
-
+  console.log('Auction object created', auctionObj);
+  
   const categoryStep = (
     <CategoryStep
       confirm={(category: AuctionCategory) => {

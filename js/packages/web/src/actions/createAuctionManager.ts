@@ -128,7 +128,8 @@ export async function createAuctionManager(
     instructions: epaInstructions,
     signers: epaSigners,
   } = await createExternalPriceAccount(connection, wallet);
-
+  console.log('externalPriceAccount ------------>', externalPriceAccount);
+  console.log('priceMint ------------>', priceMint);
   const {
     instructions: createVaultInstructions,
     signers: createVaultSigners,
@@ -137,12 +138,17 @@ export async function createAuctionManager(
     redeemTreasury,
     fractionTreasury,
   } = await createVault(connection, wallet, priceMint, externalPriceAccount);
+  console.log('vault ---------->', vault);
+  console.log('fractionalMint -------------->', fractionalMint);
+  console.log('redeemTreasury ------------->', redeemTreasury);
+  console.log('fractionalTreasury --------->', fractionTreasury);
 
   const {
     instructions: makeAuctionInstructions,
     signers: makeAuctionSigners,
     auction,
   } = await makeAuction(wallet, vault, auctionSettings);
+  console.log('auction ---------------->', auction);
 
   const safetyDepositConfigsWithPotentiallyUnsetTokens =
     await buildSafetyDepositArray(
