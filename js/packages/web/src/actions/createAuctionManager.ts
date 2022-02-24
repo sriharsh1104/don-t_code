@@ -121,6 +121,8 @@ export async function createAuctionManager(
   const accountRentExempt = await connection.getMinimumBalanceForRentExemption(
     AccountLayout.span,
   );
+  console.log('auction settings: ', auctionSettings);
+  console.log('payment mint: ', paymentMint);
 
   const {
     externalPriceAccount,
@@ -545,6 +547,7 @@ async function setupAuctionManagerInstructions(
   const instructions: TransactionInstruction[] = [];
 
   const { auctionManagerKey } = await getAuctionKeys(vault);
+  console.log('auction manager key: ', auctionManagerKey);
 
   const acceptPayment = createTokenAccount(
     instructions,
@@ -554,6 +557,7 @@ async function setupAuctionManagerInstructions(
     toPublicKey(auctionManagerKey),
     signers,
   ).toBase58();
+  console.log('accept payment: ', acceptPayment);
 
   let maxRanges = [
     auctionSettings.winners.usize.toNumber(),
@@ -577,6 +581,9 @@ async function setupAuctionManagerInstructions(
     new BN(maxRanges),
     instructions,
   );
+  console.log('vault: ', vault);
+  console.log('store: ', store);
+  console.log('instructions', instructions);
 
   return { instructions, signers, auctionManager: auctionManagerKey };
 }

@@ -63,9 +63,17 @@ export const ENDPOINTS: Array<Endpoint> = [
     url: clusterApiUrl('devnet'),
     chainId: ChainId.Devnet,
   },
+  {
+
+    name: 'localnet',
+    label: 'localnet',
+    url: 'http://localhost:8899',
+    chainId: ChainId.Localnet,
+
+  }
 ];
 
-const DEFAULT_ENDPOINT = ENDPOINTS[0];
+const DEFAULT_ENDPOINT = ENDPOINTS[3];
 
 interface ConnectionConfig {
   connection: Connection;

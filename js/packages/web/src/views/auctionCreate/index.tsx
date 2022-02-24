@@ -522,7 +522,7 @@ export const AuctionCreateView = () => {
     );
     setAuctionObj(_auctionObj);
   };
-  console.log('Auction object created', auctionObj);
+  console.log('Auction object', auctionObj);
   
   const categoryStep = (
     <CategoryStep
@@ -535,6 +535,7 @@ export const AuctionCreateView = () => {
       }}
     />
   );
+console.log('This is the category step', categoryStep);
 
   const instantSaleStep = (
     <InstantSaleStep
