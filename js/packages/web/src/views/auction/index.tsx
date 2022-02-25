@@ -85,10 +85,16 @@ export const AuctionView = () => {
   const { id } = useParams<{ id: string }>();
   const { endpoint } = useConnectionConfig();
   const auction = useAuction(id);
+  console.log('Auction ------->', auction);
   const [currentIndex, setCurrentIndex] = useState(0);
+  console.log('Current Index --------->', currentIndex);
   const art = useArt(auction?.thumbnail.metadata.pubkey);
   const { ref, data } = useExtendedArt(auction?.thumbnail.metadata.pubkey);
+  console.log('ref auction view-------->', ref);
+  console.log('data auction view ----------->', data);
   const creators = useCreators(auction);
+  console.log('creators auction view', creators);
+  
   const { pullAuctionPage } = useMeta();
   useEffect(() => {
     pullAuctionPage(id);
@@ -422,7 +428,7 @@ export const AuctionView = () => {
     );
   }
 };
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const BidLine = (props: {
   bid: any;
   index: number;
@@ -438,7 +444,7 @@ const BidLine = (props: {
   const tokenInfo = useTokenList().mainnetTokens.filter(
     m => m.address == mintKey,
   )[0];
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Get Twitter Handle from address
   const connection = useConnection();
   const [bidderTwitterHandle, setBidderTwitterHandle] = useState('');
@@ -596,15 +602,17 @@ const BidLine = (props: {
     );
   }
 };
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 export const AuctionBids = ({
   auctionView,
 }: {
   auctionView?: Auction | null;
 }) => {
   const bids = useBidsForAuction(auctionView?.auction.pubkey || '');
-
+console.log('bids auction view ------- ------->', bids);
   const mint = useMint(auctionView?.auction.info.tokenMint);
+  console.log('mint auction view ------------>', mint);
+  
   const { width } = useWindowDimensions();
 
   const [showHistoryModal, setShowHistoryModal] = useState<boolean>(false);
@@ -617,6 +625,7 @@ export const AuctionBids = ({
   const auctionState = auctionView
     ? auctionView.auction.info.state
     : AuctionState.Created;
+    console.log('auction state -------->', auctionState);
   const bidLines = useMemo(() => {
     let activeBidIndex = 0;
     return bids.map((bid, index) => {
