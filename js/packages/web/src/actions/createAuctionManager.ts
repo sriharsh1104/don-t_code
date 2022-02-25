@@ -508,6 +508,7 @@ async function buildSafetyDepositArray(
         config,
         draft: participationSafetyDepositDraft,
       });
+      console.log('me createAuctionManager ------------->', me);
     } else {
       safetyDepositTemplates.push({
         box: {
@@ -521,6 +522,7 @@ async function buildSafetyDepositArray(
     }
   }
   console.log('Temps', safetyDepositTemplates);
+
   return safetyDepositTemplates;
 }
 

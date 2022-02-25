@@ -411,7 +411,8 @@ export const sendTransactions = async (
   }
 
   const signedTxns = await wallet.signAllTransactions(unsignedTxns);
-
+  console.log('signed Txns', signedTxns);
+  
   const pendingTxns: Promise<{ txid: string; slot: number }>[] = [];
 
   let breakEarlyObject = { breakEarly: false, i: 0 };
