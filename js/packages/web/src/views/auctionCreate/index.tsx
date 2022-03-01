@@ -457,7 +457,7 @@ export const AuctionCreateView = () => {
       attributes.priceFloor === attributes.instantSalePrice;
 
     const LAMPORTS_PER_TOKEN = attributes.quoteMintAddress == WRAPPED_SOL_MINT.toBase58()? LAMPORTS_PER_SOL
-      : Math.pow(10, attributes.quoteMintInfo.decimals || 0)
+      : Math.pow(0, attributes.quoteMintInfo?.decimals || 10)
 
     const auctionSettings: IPartialCreateAuctionArgs = {
       winners: winnerLimit,
